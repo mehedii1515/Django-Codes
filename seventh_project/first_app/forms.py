@@ -17,7 +17,6 @@ class StudentForm(forms.ModelForm):
         widgets = {
             
             'name' : forms.TextInput(),
-            'roll' : forms.PasswordInput()
         }
         
         help_texts = {
