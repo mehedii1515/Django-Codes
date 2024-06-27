@@ -8,7 +8,6 @@ class Task(models.Model):
     description = models.TextField()
     category = models.ManyToManyField(Category)
     is_completed = models.BooleanField(default=False)
-    # task_assign_date = models.DateField(auto_now_add=True)
     task_assign_date = models.DateField(default=date.today)
     
     
