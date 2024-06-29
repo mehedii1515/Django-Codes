@@ -1,24 +1,70 @@
-{% extends 'base.html' %} 
-{% load crispy_forms_tags %} 
-{% block body %} 
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
 
-{% if messages %} 
-{% for m in messages %}
-<small {% if m.tags %} class="{{m.tags}}" {% endif %}>{{m}}</small>
-{% endfor %} 
-{% endif %}
+{% comment %} <style>
+    .messages {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    .alert-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+
+    .alert-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+</style> {% endcomment %}
+
+{% comment %} {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %} {% endcomment %}
+
 <form method="post" style="width: 50%; margin: auto" novalidate>
-  <h1 class="text-center">Signup Page</h1>
-  {% csrf_token %}
-   <!-- {{form | crispy }} -->
-  {% for fm in form%} 
-  {{fm.label_tag}} 
-  {{fm}} 
-  {{fm.errors|striptags}} 
-  {% endfor %}
-  <br />
-  <button class="btn btn-warning" type="submit">SignUp</button>
-  <br />
-  <small> Already have an account <a href="{% url 'login' %}">Login</a></small>
+    <h1 class="text-center">Signup Page</h1>
+    {% csrf_token %}
+    <!-- {{form | crispy }} -->
+    {% for fm in form %}
+        {{ fm.label_tag }}
+        {{ fm }}
+        {{ fm.errors|striptags }}
+    {% endfor %}
+    <br />
+    <button class="btn btn-warning" type="submit">SignUp</button>
+    <br />
+    <small> Already have an account <a href="{% url 'login' %}">Login</a></small>
 </form>
+
 {% endblock %}
